@@ -31,6 +31,10 @@
       width: 90%;
       margin-left: 2vw;
     }
+    .account-logo{
+      width: auto;
+      height: auto;
+    }
     .header-items{
       display: flex;
       justify-content: center;
@@ -38,24 +42,6 @@
     }
     p{
       color: white;
-    }
-
-    .scroller-title {
-      text-align: center;
-      width: 100%;
-      /*background: #19195e;*/
-    }
-
-    .first-title, .second-title {
-      font-size: 5vh;
-      font-weight: 200;
-      /*background: #19195e; */
-      text-shadow: 0px 3px 11px black;
-    }
-    .cards-title {
-      text-align: center;
-      width: 100%;
-      /*background: #19195e; */
     }
 
     .scroller-element {               /*picture*/
@@ -89,6 +75,9 @@
       box-shadow: var(--shadow-2);
       transition: all 0.2s ease-in-out;
     }
+    .scroller-title{
+      font-size: 1.5vh;
+    }
 
     /*.media-element:hover {
       transform: scale(1.1);
@@ -99,35 +88,17 @@
       scroll-padding-inline: var(--size-2);   /*padding from the left added*/
       scroll-snap-align: start;               /* first card cant be shown partially *grif-auto-columns*/
     }
-    .onhover-img {                            /*img*/
-      height: 50vh;                           
-      width: 30vh;
-      object-fit: cover;
-      border-radius: 4vh;
-    }
 
-    .onhover-cards {                          /*grid container*/
-      /*display: grid;
-      grid-auto-flow: column; */
+    .title-container{
       display: flex;
-      padding-top: 3vh;
-      padding-bottom: 4vh;
-      margin-bottom: 6vh;
-      margin-right: auto;
-      margin-left: auto; 
+      justify-content: center;
+      align-items: center;
     }
 
-    .card-element {                           /*grid item*/
-      display: grid;
-      height: 50vh;                           
-      width: 15vw;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .card-title {
+    .title {
       text-align: center;
-    }
+      font-size: 2.5vh;
+    } 
 
     ::-webkit-scrollbar {                       /* место для езды ползунка */
       height: 4px;
@@ -151,8 +122,42 @@
       border-radius: 10px;
       display: none;
     }
+    .card{
+      background: none;
+      border-radius: 2vh;
+      height: 40vh;
+      box-shadow: var(--shadow-2);
+      transition: all 0.2s ease-in-out;
 
-    
+    }
+    .card-img{
+      object-fit: cover;
+      border-radius: 2vh;
+      height: 35vh;
+    }
+    .card:hover{
+      transform: scale(1.1);
+    }
+    .card-title{
+      text-align: center;
+      font-size: 2vh;
+    }
+
+    .footer{
+      background: gray;
+      height: 10vh;
+      background: black;
+    }
+
+    .by{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .authors{
+      letter-spacing: 4px;
+    }
+
     </style>
     <title>Main_page</title>
   </head>
@@ -171,93 +176,112 @@
         </div>
       </div>
      </div>
-     <div class="scroller-title">
-      <p class="first-title">POPULAR EVENTS</p>
+      <div class="container mt-5 title-container">
+        <p class="title">POPULAR EVENTS</p>
       </div>
      <div class="container-fluid media-scroller snaps-inline">
       <div class="media-element">
         <img class="scroller-element" src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80">
-        <p class="title">Example of event{PRICE}</p>
+        <p class="scroller-title">Example of event{PRICE}</p>
       </div>
       <div class="media-element">
         <img class="scroller-element" src="https://images.unsplash.com/photo-1569930784237-ea65a2f40a83?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=712&q=80">
-        <p class="title">Example of event{PRICE}</p>
+        <p class="scroller-title">Example of event{PRICE}</p>
       </div>
       <div class="media-element">
         <img class="scroller-element" src="https://images.unsplash.com/photo-1568732626545-b9208b767347?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1464&q=80">
-        <p class="title">Example of event{PRICE}</p>
+        <p class="scroller-title">Example of event{PRICE}</p>
       </div> 
       <div class="media-element">
         <img class="scroller-element" src="https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80">
-        <p class="title">Example of event{PRICE}</p>
+        <p class="scroller-title">Example of event{PRICE}</p>
       </div>
       <div class="media-element">
         <img class="scroller-element" src="https://images.unsplash.com/photo-1576060974974-933acee13b58?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2669&q=80">
-        <p class="title">Example of event{PRICE}</p>
+        <p class="scroller-title">Example of event{PRICE}</p>
       </div>
       <div class="media-element">
         <img class="scroller-element" src="https://images.unsplash.com/photo-1480180566821-a7d525cdfc5e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1825&q=80">
-        <p class="title">Example of event{PRICE}</p>
+        <p class="scroller-title">Example of event{PRICE}</p>
       </div>
       <div class="media-element">
         <img class="scroller-element" src="https://images.unsplash.com/photo-1576085898323-218337e3e43c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80">
-        <p class="title">Example of event{PRICE}</p>
+        <p class="scroller-title">Example of event{PRICE}</p>
       </div>
       <div class="media-element">
         <img class="scroller-element" src="https://images.unsplash.com/photo-1542367906-cfaaad7277db?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80">
-        <p class="title">Example of event{PRICE}</p>
+        <p class="scroller-title">Example of event{PRICE}</p>
       </div>
       <div class="media-element">
         <img class="scroller-element" src="https://images.unsplash.com/photo-1550219363-d0adfaa43d0f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1472&q=80">
-        <p class="title">Example of event{PRICE}</p>
+        <p class="scroller-title">Example of event{PRICE}</p>
       </div>
       <div class="media-element">
         <img class="scroller-element" src="https://images.unsplash.com/photo-1476382929176-f7b329008e17?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80">
-        <p class="title">Example of event{PRICE}</p>
+        <p class="scroller-title">Example of event{PRICE}</p>
       </div>
       <div class="media-element">
         <img class="scroller-element" src="https://images.unsplash.com/flagged/photo-1572482826473-39c90e0f1536?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80">
-        <p class="title">Example of event{PRICE}</p>
+        <p class="scroller-title">Example of event{PRICE}</p>
       </div>
       <div class="media-element">
         <img class="scroller-element" src="https://images.unsplash.com/photo-1561489396-888724a1543d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80">
-        <p class="title">Example of event{PRICE}</p>
+        <p class="scroller-title">Example of event{PRICE}</p>
       </div>
     </div>
-    <div class="cards-title">
-      <p class="first-title">TOP EVENTS</p>
+    <div class="container mb-3 title-container">
+      <p class="title">TOP EVENTS</p>
     </div>
     <div class="container-fluid">
-      <div class="row onhover-cards">
-        <div class="col-lg card-element">
-          <a href="#"><img class="onhover-img" src="https://images.unsplash.com/photo-1582192903020-8a5e59dcdcf2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"></a>
-          <p class="card-title">Example of event</p>
+      <div class="row">
+        <div class="col-sm mb-3">
+          <div class="card">
+            <a href="#"><img class="card-img" src="https://images.unsplash.com/photo-1582192903020-8a5e59dcdcf2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="event-preview"></a>
+            <p class="card-title">Example of event</p>
+          </div>
         </div>
-        <div class="col-lg card-element">
-          <a href="#"><img class="onhover-img" src="https://images.unsplash.com/photo-1569863959165-56dae551d4fc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80"></a>
-          <p class="card-title">Example of event</p>
+        <div class="col-sm mb-3">
+          <div class="card">
+            <a href="#"><img class="card-img" src="https://images.unsplash.com/photo-1582192903020-8a5e59dcdcf2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="event-preview"></a>
+            <p class="card-title">Example of event</p>
+          </div>
         </div>
-        <div class="col-lg card-element">
-          <a href="#"><img class="onhover-img" src="https://images.unsplash.com/photo-1515168833906-d2a3b82b302a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"></a>
-          <p class="card-title">Example of event</p>
+        <div class="col-sm mb-3">
+          <div class="card">
+            <a href="#"><img class="card-img" src="https://images.unsplash.com/photo-1582192903020-8a5e59dcdcf2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="event-preview"></a>
+            <p class="card-title">Example of event</p>
+          </div>
         </div>
-        <div class="col-lg card-element">
-          <a href="#"><img class="onhover-img" src="https://images.unsplash.com/photo-1522158637959-30385a09e0da?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"></a>
-          <p class="card-title">Example of event</p>
+        <div class="col-sm mb-3">
+          <div class="card">
+            <a href="#"><img class="card-img" src="https://images.unsplash.com/photo-1582192903020-8a5e59dcdcf2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="event-preview"></a>
+            <p class="card-title">Example of event</p>
+          </div>
         </div>
-        <div class="col-lg card-element">
-          <a href="#"><img class="onhover-img" src="https://images.unsplash.com/photo-1508997449629-303059a039c0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"></a>
-          <p class="card-title">Example of event</p>
+        <div class="col-sm mb-3">
+          <div class="card">
+            <a href="#"><img class="card-img" src="https://images.unsplash.com/photo-1582192903020-8a5e59dcdcf2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="event-preview"></a>
+            <p class="card-title">Example of event</p>
+          </div>
+        </div>
+        <div class="col-sm mb-3">
+          <div class="card">
+            <a href="#"><img class="card-img" src="https://images.unsplash.com/photo-1582192903020-8a5e59dcdcf2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="event-preview"></a>
+            <p class="card-title">Example of event</p>
+          </div>
         </div>
       </div>
     </div>
-    
-
-
-
-
-
-
-    
+    <div class="container-fluid mt-5 footer">
+      <div class="row">
+        <div class="by mt-3">
+          <p class="authors">
+            Ryhor Hapkala 218524
+            <br>
+            Yahor&nbsp;Lashko&nbsp;&nbsp;&nbsp;219145
+          </p>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
