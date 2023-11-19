@@ -142,10 +142,6 @@
     }
     .carousel-image {
       border-radius: 15px;
-      /*aspect-ratio: 9/6;
-      max-width: 100%;
-      width: auto;*/
-      height: calc(auto * 9/16);
       -webkit-box-shadow: 0px 10px 13px -6px rgba(0, 0, 0, 1);
       -moz-box-shadow: 0px 10px 13px -6px rgba(0, 0, 0, 1);
       box-shadow: 0px 10px 13px -6px rgba(0, 0, 0, 1);
@@ -477,6 +473,38 @@
       </div>
     </div>
     <script>
+      function setCarouselImageAspectRatio() {
+        const carouselImages = document.querySelectorAll('.carousel-image');
+      
+        carouselImages.forEach((image) => {
+          const aspectRatio = 16 / 9; // Задаем желаемое соотношение сторон
+      
+          // Устанавливаем псевдоэлемент для эмуляции aspect-ratio
+          const pseudoElement = document.createElement('div');
+          pseudoElement.style.width = '100%';
+          pseudoElement.style.paddingTop = `${100 / aspectRatio}%`;
+          pseudoElement.style.position = 'relative';
+      
+          // Устанавливаем стили для изображения внутри псевдоэлемента
+          const imageInsidePseudo = document.createElement('img');
+          imageInsidePseudo.src = image.src;
+          imageInsidePseudo.style.position = 'absolute';
+          imageInsidePseudo.style.width = '100%';
+          imageInsidePseudo.style.height = '100%';
+          imageInsidePseudo.style.objectFit = 'cover'; // или другой способ масштабирования
+      
+          // Очищаем содержимое элемента и добавляем псевдоэлемент с изображением
+          image.innerHTML = '';
+          image.appendChild(pseudoElement);
+          pseudoElement.appendChild(imageInsidePseudo);
+        });
+      }
+      
+      // Вызываем функцию при загрузке страницы или в нужный момент
+      window.addEventListener('load', setCarouselImageAspectRatio);
+      window.addEventListener('resize', setCarouselImageAspectRatio);
+      
+
       function toggleLike(el) {
         if (el.classList.contains("like-vehicle-pressed")) {
           el.classList.remove("like-vehicle-pressed");
