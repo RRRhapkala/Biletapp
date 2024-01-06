@@ -6,6 +6,8 @@
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link rel="stylesheet" type="text/css" href="/images_gpages/slick/slick.css"/>
   <link rel="stylesheet" type="text/css" href="/images_gpages/slick/slick-theme.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/ol@v8.2.0/dist/ol.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v8.2.0/ol.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
@@ -31,7 +33,7 @@
        background: #3a3939; 
     } 
     .navbar-toggler-icon {
-      background-image: url("/images_gpages/toggler-icon.svg");
+      background-image: url("{% static 'toggler-icon.svg' %}");
       color: #ff6600;
     }
     .navbar-nav {
@@ -77,8 +79,8 @@
     }
     #slick-images {
       height: auto;
-      padding-left: 10px;
-      padding-right: 10px;
+      padding-left: 1vw;
+      padding-right: 1vw;
       text-align: center;
       display: flex;
       justify-content: center;
@@ -90,17 +92,15 @@
       object-fit: contain;
     }
     .slick-track {
-      padding-bottom: 1vh;
+      padding-bottom: min(1vh, 10px);
     }
     .slick-list {
-      padding-bottom: 2vh;
+      padding-bottom: 1vh;
       padding-left: 1vw;
       padding-right: 1vw;
     }
     #slider-nav > .slick-list > .slick-track > img {
-      object-fit: contain;
-      margin: 10px;
-      width: 20%;
+      margin: min(0.75vw, 10px);
     }
     #slick-images > button {
       position: relative;
@@ -117,14 +117,16 @@
       height: 30px;
     }
     .slick-next, .slick-next:hover {
-      background-image: url("/images_gpages/arrow-right.svg")!important;
+      background-image: url("{% static 'arrow-right.svg' %}")!important;
       background-repeat: no-repeat!important;
       background-size: contain!important;
+      
     }
     .slick-prev, .slick-prev:hover {
-      background-image: url("/images_gpages/arrow-left.svg")!important;
+      background-image: url("{% static 'arrow-left.svg' %}")!important;
       background-repeat: no-repeat!important;
       background-size: contain!important;
+      
     }
     .slick-next::before, .slick-prev::before {
       display: none;
@@ -133,29 +135,39 @@
       background-repeat: no-repeat;
     }
     #slick-images > div {
+      width: 100vw;
       height: auto;
       object-fit: contain;
     }
     #slider-nav {
-      margin-top: 2vh;
+      width: auto;
       margin-bottom: 2vh;
+      /*padding-top: 1.5vw;
+      padding-bottom: 3vw; */
     }
     .carousel-image {
-      border-radius: 15px;
-      height: 100%;
-      -webkit-box-shadow: 0px 10px 13px -6px rgba(0, 0, 0, 1);
-      -moz-box-shadow: 0px 10px 13px -6px rgba(0, 0, 0, 1);
-      box-shadow: 0px 10px 13px -6px rgba(0, 0, 0, 1);
+      border-radius: 1.5vw;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      --shadow-size: min(1vw, 10px); /* определение размера тени через min() */
+      -webkit-box-shadow: 0px var(--shadow-size) var(--shadow-size) calc(-0.5 * var(--shadow-size)) rgba(0, 0, 0, 0.8);
+      -moz-box-shadow: 0px var(--shadow-size) var(--shadow-size) calc(-0.5 * var(--shadow-size)) rgba(0, 0, 0, 0.8);
+      box-shadow: 0px var(--shadow-size) var(--shadow-size) calc(-0.5 * var(--shadow-size)) rgba(0, 0, 0, 0.8);
     }
     .bottom-carousel-image {
-      height: auto;
-      border-radius: 10px;
-      -webkit-box-shadow: 0px 10px 13px -6px rgba(0, 0, 0, 1);
-      -moz-box-shadow: 0px 10px 13px -6px rgba(0, 0, 0, 1);
-      box-shadow: 0px 10px 13px -6px rgba(0, 0, 0, 1);
+      border-radius: 1vw;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      --shadow-size: min(1vw, 10px); /* определение размера тени через min() */
+      -webkit-box-shadow: 0px var(--shadow-size) var(--shadow-size) calc(-0.5 * var(--shadow-size)) rgba(0, 0, 0, 0.8);
+      -moz-box-shadow: 0px var(--shadow-size) var(--shadow-size) calc(-0.5 * var(--shadow-size)) rgba(0, 0, 0, 0.8);
+      box-shadow: 0px var(--shadow-size) var(--shadow-size) calc(-0.5 * var(--shadow-size)) rgba(0, 0, 0, 0.8);
     }
     .slick-arrow {
       width: fit-content;
+      margin: 2vw!important; 
     }
     .bx {
       width: auto;
@@ -189,7 +201,7 @@
     ::-webkit-scrollbar-track {
       background: #2d2d2d; 
     }
-    
+ 
     /* Handle */
     ::-webkit-scrollbar-thumb {
       background: #ff6600; 
@@ -199,11 +211,9 @@
     ::-webkit-scrollbar-thumb:hover {
       background: #b44901; 
     }
-
     .link-name {
       transition: all 0.15s ease-in-out;
     }
-
     .link-name:hover {
       -webkit-box-shadow: 0px 0px 23px -5px rgba(0, 0, 0, 1);
       -moz-box-shadow: 0px 0px 23px -5px rgba(0, 0, 0, 1);
@@ -249,16 +259,9 @@
       padding-right: 2vw;
       padding-bottom: 3vh;
     }
-    .map {
+    #js-map {
       width: 100%;
-      height: 40vh;
-      background: #3A3939;
-      border-radius: 15px;
-    }
-    .yandex-map {
-      width: 100%;
-      height: 100%;
-      padding: 25px 25px 25px 25px;
+      border-radius: 2vw;
     }
     .like-vehicle:hover{
       color: white;
@@ -323,20 +326,20 @@
     <div class="row car-cols">
       <div class="col-xl-7 carousel">
         <div class="slider-for" id="slick-images">
-          <img class="carousel-image" src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&q=80&w=1770&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
-          <img class="carousel-image" src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&q=80&w=2670&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
-          <img class="carousel-image" src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&q=80&w=2670&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
-          <img class="carousel-image" src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=2670&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt=""> 
-          <img class="carousel-image" src="https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&q=80&w=2670&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
-          <img class="carousel-image" src="https://images.unsplash.com/photo-1541443131876-44b03de101c5?auto=format&fit=crop&q=80&w=2670&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+          <img class="carousel-image auto-resize" src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&q=80&w=1770&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+          <img class="carousel-image auto-resize" src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&q=80&w=2670&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+          <img class="carousel-image auto-resize" src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&q=80&w=2670&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+          <img class="carousel-image auto-resize" src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=2670&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt=""> 
+          <img class="carousel-image auto-resize" src="https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&q=80&w=2670&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+          <img class="carousel-image auto-resize" src="https://images.unsplash.com/photo-1541443131876-44b03de101c5?auto=format&fit=crop&q=80&w=2670&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
         </div>
         <div class="slider-nav container" id="slider-nav">
-          <img class="bottom-carousel-image" src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&q=80&w=1770&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
-          <img class="bottom-carousel-image" src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&q=80&w=2670&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
-          <img class="bottom-carousel-image" src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&q=80&w=2670&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
-          <img class="bottom-carousel-image" src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=2670&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt=""> 
-          <img class="bottom-carousel-image" src="https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&q=80&w=2670&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
-          <img class="bottom-carousel-image" src="https://images.unsplash.com/photo-1541443131876-44b03de101c5?auto=format&fit=crop&q=80&w=2670&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+          <img class="bottom-carousel-image auto-resize" src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&q=80&w=1770&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+          <img class="bottom-carousel-image auto-resize" src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&q=80&w=2670&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+          <img class="bottom-carousel-image auto-resize" src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&q=80&w=2670&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+          <img class="bottom-carousel-image auto-resize" src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=2670&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt=""> 
+          <img class="bottom-carousel-image auto-resize" src="https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&q=80&w=2670&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+          <img class="bottom-carousel-image auto-resize" src="https://images.unsplash.com/photo-1541443131876-44b03de101c5?auto=format&fit=crop&q=80&w=2670&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
         </div>
       </div>
       <div class="col-xl-5">
@@ -510,6 +513,30 @@
               infinity: true
             });
         });
+        
+
+      function init(){
+        const map = new ol.Map({
+          view: new ol.View({
+            center: [2339014.595662489, 6841950.467177815], 
+            zoom: 13, 
+            minZoom: 4,
+            maxZoom: 20 
+          }),
+          layers: [
+            new ol.layer.Tile({
+              source: new ol.source.OSM
+            })
+          ],
+          target: 'js-map'
+        })
+      
+        map.on('click', function(e){
+          console.log(e.coordinate)
+        })
+        }
+        
+        init()
       </script>
 </body>
 </html>
